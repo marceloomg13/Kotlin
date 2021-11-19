@@ -84,14 +84,19 @@ class Modulo(maxAlumnos:Int){
     fun matricularAlumno(alumno:Alumno){
         alumnos.plus(alumno)
     }
-    fun bajaAlumno(idAlumno: Int){
-       // alumnos[alumnos.indexOfFirst{idAlumno}]=null
+    fun bajaAlumno(idAlumno: Int): Boolean{
+        return if((idAlumno>alumnos.size-1) or (idAlumno<0)){
+            false
+        }else{
+            alumnos[alumnos.indexOfFirst{it?.idAlumno==idAlumno}]=null
+            true
+        }
     }
 }
 
 class Alumno(Nombre:String){
-    private var idAlumno:Int=1
-    private var nombreCompleto:String
+    var idAlumno:Int=1
+    var nombreCompleto:String
     init {
         this.nombreCompleto = Nombre
         idAlumno++
